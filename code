@@ -1,0 +1,36 @@
+!pip install transformers torch
+from transformers import pipeline
+
+def load_sentiment_analyzer():
+  sentiment_analyzer = pipeline("sentiment-analysis",
+model="cardiffnlp/twitter-roberta-base-sentiment")
+  return sentiment_analyzer
+sentiment_analyzer = load_sentiment_analyzer()
+def analyze_sentiment(text, sentiment_analyzer):
+
+  results = sentiment_analyzer(text)
+
+  label = results[0]['label']
+  score = results[0]['score']
+
+  if label == 'POSITIVE':
+    sentiment = 'Positive'
+  elif label == 'NEGATIVE':
+    sentiment = 'Negative'
+  else:
+    sentiment = 'Neutral'
+  return sentiment, score
+
+text_to_analyze = "I love this product!"
+sentiment, score = analyze_sentiment(text_to_analyze, sentiment_analyzer)
+print(f"Sentiment: {sentiment}, Score: {score:.2f}")
+def main():
+  print("Welcome to the Sentiment Analysis Tool!")
+while True:
+  text_to_analyze = input("Enter text to analyze (or type 'exit' to quit): ")
+  if text_to_analyze.lower() == 'exit':
+    break
+  sentiment, score = analyze_sentiment(text_to_analyze, sentiment_analyzer)
+  print(f"Sentiment: {sentiment}, Score: {score:.2f}")
+if __name__ == "__main__":
+  main()

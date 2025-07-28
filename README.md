@@ -20,6 +20,7 @@ Install the required dependencies using pip:
 
 ```bash
 pip install transformers torch
+
 ```
 
 ## 🧠 Model Info
@@ -35,4 +36,5 @@ sentiment-analysis/
 ├── sentiment_tool.py        # Python script with sentiment logic
 ├── README.md                # Project documentation
 └── requirements.txt         # (Optional) List of dependencies
+
 ```
